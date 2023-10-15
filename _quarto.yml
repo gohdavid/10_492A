@@ -1,0 +1,9 @@
+format: 
+  beamer:
+    navigation: horizontal
+    header-includes:
+      \usepackage{siunitx}
+      \usepackage{amsmath}
+      \usepackage{mhchem}
+    bibliography:
+      references.bib
