@@ -21,8 +21,8 @@ from fipy.viewers.matplotlibViewer.matplotlibStreamViewer import MatplotlibStrea
 # Geometry
 Lx = 2   # meters
 Ly = 1    # meters
-nx = 51  # nodes
-ny = 51
+nx = 85  # nodes
+ny = 85
 
 cellSize = 0.05
 radius = 1.5
@@ -133,9 +133,8 @@ for step in tqdm(range(steps)):
     # vxviewer.plot()
     # vyviewer.plot()
     # phiaviewer.plot()
-    if step%20 == 0:
-        phipviewer.plot()
-        plt.savefig(f"./figures/rectangular/peclet_{Pe}_step_{step}.png")
+    phipviewer.plot()
+    plt.savefig(f"./figures/rectangular/peclet_{Pe}_step_{step}.png")
 
 
 fp.dump.write(v,"velocity_rectangular.gz")

@@ -138,9 +138,7 @@ for step in tqdm(range(steps)):
     # vxviewer.plot()
     # vyviewer.plot()
     # phiaviewer.plot()
-    if step%10 == 0:
-        phipviewer.plot()
-        plt.savefig(f"./figures/curved/peclet_{Pe}_step_{step}.png")
+    phipviewer.plot()
+    plt.savefig(f"./figures/curved/peclet_{Pe}_step_{step}.png")
 
-fp.dump.write(v,"velocity_curved.gz")
 input('end')

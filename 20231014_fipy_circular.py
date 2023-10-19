@@ -17,7 +17,7 @@ from fipy import (
 import fipy as fp
 
 from fipy.viewers.matplotlibViewer.matplotlibStreamViewer import MatplotlibStreamViewer
-
+from fipy.viewers.matplotlibViewer.matplotlibVectorViewer import MatplotlibVectorViewer
 # Geometry
 
 cellSize = 0.02
@@ -85,7 +85,7 @@ p.constrain(0, where=mesh.exteriorFaces & outlet)
 
 #Equation#Equations
 Re = 1e-2
-Pe = 1e4
+Pe = 1e2
 kf = 5.96e4/400e-9
 kr = 2.48e-3
 
@@ -104,12 +104,12 @@ print('Total time: {} seconds'.format(dt*steps))
 total_time = 0.0
 
 
-viewer1 = MatplotlibStreamViewer(v)
-# viewer2 = Viewer(v)
+# viewer1 = MatplotlibStreamViewer(v)
+# viewer2 = MatplotlibVectorViewer(v)
 # pviewer = Viewer(p)
 # vxviewer = Viewer(vx)
 # vyviewer = Viewer(vy)
-# phipviewer = Viewer(phip,datamin=0,datamax=4)
+phipviewer = Viewer(phip,datamin=0,datamax=4)
 # phiaviewer = Viewer(phia)
 
 for step in tqdm(range(steps)):
@@ -133,9 +133,9 @@ for step in tqdm(range(steps)):
         phip.constrain(1, where=mesh.exteriorFaces & inlet)
     if step == 110:
         phip.constrain(0,  where=mesh.exteriorFaces & inlet)
-    viewer1.plot()
-    if step%20 == 0:
-        plt.savefig(f"./figures/circular/streamline_{step}.png")
+    # viewer2.plot()
+    # if step%20 == 0:
+    #     plt.savefig(f"./figures/circular/velocityfield_step_{step}.png")
     # vxviewer.plot()
     # if step%20 == 0:
         # plt.savefig(f"./figures/circular/vx_step_{step}.png")
@@ -143,9 +143,9 @@ for step in tqdm(range(steps)):
     # if step%20 == 0:
         # plt.savefig(f"./figures/circular/vy_step_{step}.png")
     # pviewer.plot()
-    # phipviewer.plot()
-    # if step%20 == 0:
-    #     plt.savefig(f"./figures/circular/peclet_{Pe}_reynold_{Re}_step_{step}.png")
+    phipviewer.plot()
+
+    plt.savefig(f"./figures/circular/peclet_{Pe}_reynold_{Re}_step_{step}.png")
     # phiaviewer.plot()
 
 
